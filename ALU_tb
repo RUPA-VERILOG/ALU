@@ -1,0 +1,35 @@
+module ALU_tb();
+
+reg [7:0] A,B;
+reg [2:0] ALU_sel;
+wire [7:0] ALU_Out;
+wire carry;
+
+ALU uut(
+    .A(A),
+    .B(B),
+    .ALU_sel(ALU_sel),
+    .ALU_Out(ALU_Out),
+    .carry(carry)
+);
+
+initial
+begin
+    A = 8'd6;
+    B = 8'd5;
+
+    $monitor("%d, %d, %d", A, B, ALU_Out);
+
+    ALU_sel = 3'b000; #10
+    ALU_sel = 3'b001; #10
+    ALU_sel = 3'b010; #10
+    ALU_sel = 3'b011; #10
+    ALU_sel = 3'b100; #10
+    ALU_sel = 3'b101; #10
+    ALU_sel = 3'b110; #10
+    ALU_sel = 3'b111; #10
+
+    $stop;
+end
+
+endmodule
